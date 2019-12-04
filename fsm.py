@@ -35,7 +35,7 @@ class TocMachine(GraphMachine):
 
     def on_enter_draw(self, event):
         reply_token = event.reply_token
-        machine.get_graph().draw("fsm.jpg", prog="dot", format="jpg")
+        self.machine.get_graph().draw("fsm.jpg", prog="dot", format="jpg")
         send_image_url(reply_token, 'fsm.jpg')
         self.back()
 
