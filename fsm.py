@@ -80,9 +80,8 @@ class TocMachine(GraphMachine):
         for index in range(len(titleList)):
             msg.append(scraper.getBasicInfo(titleList[index]['url']))
 
-        random.shuffle(msg)
         reply_token = event.reply_token
-        send_multiple_text_message(reply_token, msg)
+        send_text_message(reply_token, msg[random.randint(0, len(msg) - 1)])
         self.go_back()
 
     def on_exit_ps4(self):

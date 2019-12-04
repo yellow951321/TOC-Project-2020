@@ -12,6 +12,4 @@ msg = []
 for index in range(len(titleList)):
     msg.append(scraper.getBasicInfo(titleList[index]['url']))
 
-random.shuffle(msg)
-
-print(msg)
+print(msg[random.randint(0, len(msg) - 1)])
