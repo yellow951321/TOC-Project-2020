@@ -15,7 +15,7 @@ def send_text_message(reply_token, text):
 
 def send_multiple_text_message(reply_token, textList):
     line_bot_api = LineBotApi(channel_access_token)
-    line_bot_api.reply_message(reply_token, [ TextSendMessage(text=text) for text in textList ])
+    line_bot_api.reply_message(reply_token, [ TextSendMessage(text=textList[index]) for index in range(5)])
 
     return "OK"
 
