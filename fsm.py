@@ -22,10 +22,6 @@ class TocMachine(GraphMachine):
 
     def on_enter_game_news(self, event):
         print("I'm entering state1")
-        scraper = IgnScraper('ps4')
-        scraper.asyncGetPages()
-        titleList = scraper.getTitleLists()
-        reply_msg = ""
         buttons_template = TemplateSendMessage(
             alt_text='Buttons Template',
             template=ButtonsTemplate(
@@ -56,9 +52,6 @@ class TocMachine(GraphMachine):
         send_template(reply_token, buttons_template)
         # self.go_back()
 
-    # def on_exit_game_news(self):
-    #     print("Leaving state1")
-
     def on_enter_state2(self, event):
         print("I'm entering state2")
 
@@ -69,9 +62,24 @@ class TocMachine(GraphMachine):
     def on_exit_state2(self):
         print("Leaving state2")
 
-    def one_enter_ps4(self):
-        print('ps4')
+    def on_enter_ps4(self):
+        scraper = IgnScraper('ps4')
+        scraper.asyncGetPages()
+        titleList = scraper.getTitleLists()
+        buttons_template = TemplateSendMessage(
+            alt_text='Buttons Template',
+            template=ButtonsTemplate(
+                title='news',
+                text='choose one',
+                thumbnail_image_url='https://i.imgur.com/mjUakr3.jpg',
+                actions=[
+                    MessageTemplateAction(label=key, text=key) for key in titleList
+                ]
+            )
+        )
+        reply_token = event.reply_token
+        send_template(reply_token, buttons_template)
         self.go_back()
 
-    def one_exit_ps4(self):
+    def on_exit_ps4(self):
         print('ps4 leaving')
