@@ -56,8 +56,8 @@ class TocMachine(GraphMachine):
         send_template(reply_token, buttons_template)
         # self.go_back()
 
-    def on_exit_game_news(self):
-        print("Leaving state1")
+    # def on_exit_game_news(self):
+    #     print("Leaving state1")
 
     def on_enter_state2(self, event):
         print("I'm entering state2")
