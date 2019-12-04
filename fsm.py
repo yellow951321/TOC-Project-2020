@@ -1,5 +1,5 @@
+from IgnScraper import IgnScraper
 from transitions.extensions import GraphMachine
-
 from utils import send_text_message
 
 
@@ -9,7 +9,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_state1(self, event):
         text = event.message.text
-        return text.lower() == "go to state1"
+        return text.lower() == "game news"
 
     def is_going_to_state2(self, event):
         text = event.message.text
@@ -17,9 +17,13 @@ class TocMachine(GraphMachine):
 
     def on_enter_state1(self, event):
         print("I'm entering state1")
-
+        IgnScraper.asyncGetPages()
+        titleList = IgnScraper.getTitleLists()
+        reply_msg = "1"
+        for key in titleList:
+            reply_msg += key + "\n"
         reply_token = event.reply_token
-        send_text_message(reply_token, "Trigger state1")
+        send_text_message(reply_token, reply_msg)
         self.go_back()
 
     def on_exit_state1(self):
