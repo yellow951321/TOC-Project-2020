@@ -39,7 +39,7 @@ class TocMachine(GraphMachine):
                     ),
                     MessageTemplateAction(
                         label='pc',
-                        text='pc'
+                        text='pc'   
                     ),
                     MessageTemplateAction(
                         label='NS',
@@ -49,7 +49,7 @@ class TocMachine(GraphMachine):
             )
         )
         reply_token = event.reply_token
-        send_text_message(reply_token, buttons_template)
+        send_template(reply_token, buttons_template)
         self.go_back()
 
     def on_exit_state1(self):
