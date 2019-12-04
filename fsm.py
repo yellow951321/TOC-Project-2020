@@ -18,7 +18,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_ps4(self, event):
         text = event.message.text
-        return text.lower() == "Ps4"
+        return text.lower() == "ps4"
 
     def on_enter_game_news(self, event):
         print("I'm entering state1")
@@ -34,8 +34,8 @@ class TocMachine(GraphMachine):
                 thumbnail_image_url='https://i.imgur.com/mjUakr3.jpg',
                 actions=[
                     MessageTemplateAction(
-                        label='Ps4',
-                        text='Ps4'
+                        label='ps4',
+                        text='ps4'
                     ),
                     MessageTemplateAction(
                         label='xbox-one',
@@ -46,7 +46,7 @@ class TocMachine(GraphMachine):
                         text='pc'
                     ),
                     MessageTemplateAction(
-                        label='NS',
+                        label='nintendo-switch',
                         text='nintendo-switch'
                     ),
                 ]
