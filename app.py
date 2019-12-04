@@ -16,13 +16,13 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["user", "state2", 'game_news', 'ps4', "xbox_one", "pc", "nintendo_switch"],
+    states=['user', 'draw', 'game_news', 'ps4', "xbox_one", "pc", "nintendo_switch"],
     transitions=[
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state2",
-            "conditions": "is_going_to_state2",
+            "dest": "draw",
+            "conditions": "is_going_to_draw",
         },
         {
             "trigger": "advance",
@@ -54,7 +54,7 @@ machine = TocMachine(
             "dest": "nintendo_switch",
             "conditions": "is_going_to_nintendo_switch",
         },
-        {"trigger": "go_back", "source": ["state2", "game_news", "ps4", "xbox_one", "pc", "nintendo_switch"], "dest": "user"},
+        {"trigger": "go_back", "source": ["draw", "game_news", "ps4", "xbox_one", "pc", "nintendo_switch"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,
