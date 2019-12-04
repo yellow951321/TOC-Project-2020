@@ -70,7 +70,7 @@ class TocMachine(GraphMachine):
         i = 0
         for key in titleList:
             i = i + 1
-            msg += i + '\n' + key + '\n'
+            msg += str(i) + '\n' + key + '\n'
         msg += 'enter number to choose news'
         reply_token = event.reply_token
         send_text_message(reply_token, msg)
