@@ -137,7 +137,7 @@ def webhook_handler():
 
 @app.route("/show-fsm", methods=["GET"])
 def show_fsm():
-    machine.get_graph().draw("fsm.jpg", prog="dot", format="jpg")
+    self.get_graph().draw("fsm.jpg", prog="dot", format="jpg")
     return send_file("fsm.jpg", mimetype="image/jpg")
 
 
