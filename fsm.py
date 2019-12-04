@@ -25,14 +25,29 @@ class TocMachine(GraphMachine):
         buttons_template = TemplateSendMessage(
             alt_text='Buttons Template',
             template=ButtonsTemplate(
-                title='choose console type',
-                text='console list',
+                title='Start',
+                text='按下Go開始',
                 thumbnail_image_url='https://i.imgur.com/mjUakr3.jpg',
-                actions=[ MessageTemplateAction( label= key, text= key) for key in titleList ]
+                actions=[
+                    MessageTemplateAction(
+                        label='Ps4',
+                        text='Ps4'
+                    ),
+                    MessageTemplateAction(
+                        label='xbox-one',
+                        text='xbox-one'
+                    ),
+                    MessageTemplateAction(
+                        label='pc',
+                        text='pc'
+                    ),
+                    MessageTemplateAction(
+                        label='NS',
+                        text='nintendo-switch'
+                    ),
+                ]
             )
         )
-        # for key in titleList:
-        #     reply_msg += key + "\n"
         reply_token = event.reply_token
         send_text_message(reply_token, buttons_template)
         self.go_back()
