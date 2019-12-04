@@ -16,7 +16,7 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["user", "state1", "state2"],
+    states=["user", "state2", 'game_news', 'ps4'],
     transitions=[
         {
             "trigger": "advance",
