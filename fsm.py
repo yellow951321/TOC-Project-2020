@@ -62,7 +62,7 @@ class TocMachine(GraphMachine):
     def on_exit_state2(self):
         print("Leaving state2")
 
-    def on_enter_ps4(self):
+    def on_enter_ps4(self, event):
         scraper = IgnScraper('ps4')
         scraper.asyncGetPages()
         titleList = scraper.getTitleLists()
