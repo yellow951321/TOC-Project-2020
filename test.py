@@ -8,10 +8,8 @@ from linebot.models import MessageEvent, PostbackEvent, TextSendMessage, Templat
 scraper = IgnScraper('ps4')
 scraper.asyncGetPages()
 titleList = scraper.getTitleLists()
-msg = ''
+msg = []
 for index in range(len(titleList)):
-    msg += scraper.getBasicInfo(titleList[index]['url'])
-    if index != range(len(titleList)):
-        msg += '\n'
+    msg.append(scraper.getBasicInfo(titleList[index]['url']))
 
 print(msg)

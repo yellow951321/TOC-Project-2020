@@ -1,6 +1,6 @@
 from IgnScraper import IgnScraper
 from transitions.extensions import GraphMachine
-from utils import send_text_message, send_image_url,send_template
+from utils import send_text_message, send_image_url, send_template, send_multiple_text_message
 from linebot.models import MessageEvent, PostbackEvent, TextSendMessage, TemplateSendMessage, ButtonsTemplate,PostbackTemplateAction, MessageTemplateAction, URITemplateAction,ImageSendMessage
 
 
@@ -80,7 +80,7 @@ class TocMachine(GraphMachine):
             msg.append(scraper.getBasicInfo(titleList[index]['url']))
 
         reply_token = event.reply_token
-        send_text_message(reply_token, msg)
+        send_multiple_text_message(reply_token, msg)
         self.go_back()
 
     def on_exit_ps4(self):

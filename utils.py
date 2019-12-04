@@ -13,6 +13,12 @@ def send_text_message(reply_token, text):
 
     return "OK"
 
+def send_multiple_text_message(reply_token, textList):
+    line_bot_api = LineBotApi(channel_access_token)
+    line_bot_api.reply_message(reply_token, [ TextSendMessage(text=text) for text in textList ])
+
+    return "OK"
+
 def send_image_url(id, img_url):
     line_bot_api = LineBotApi(channel_access_token)
     line_bot_api.push_message(id, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
