@@ -27,7 +27,7 @@ class TocMachine(GraphMachine):
             template=ButtonsTemplate(
                 title='choose console type',
                 text='console list',
-                # thumbnail_image_url='https://i.imgur.com/mjUakr3.jpg',
+                thumbnail_image_url='https://i.imgur.com/mjUakr3.jpg',
                 actions=[ MessageTemplateAction( label= key, text= key) for key in titleList ]
             )
         )
