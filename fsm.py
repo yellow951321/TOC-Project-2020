@@ -17,8 +17,9 @@ class TocMachine(GraphMachine):
 
     def on_enter_state1(self, event):
         print("I'm entering state1")
-        IgnScraper.asyncGetPages()
-        titleList = IgnScraper.getTitleLists()
+        scraper = IgnScraper('ps4')
+        scraper.asyncGetPages()
+        titleList = scraper.getTitleLists()
         reply_msg = "1"
         for key in titleList:
             reply_msg += key + "\n"
