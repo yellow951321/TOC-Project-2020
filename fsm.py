@@ -1,6 +1,7 @@
 from IgnScraper import IgnScraper
 from transitions.extensions import GraphMachine
-from utils import send_text_message
+from utils import send_text_message, send_image_url,send_template
+from linebot.models import MessageEvent, PostbackEvent, TextSendMessage, TemplateSendMessage, ButtonsTemplate,PostbackTemplateAction, MessageTemplateAction, URITemplateAction,ImageSendMessage
 
 
 class TocMachine(GraphMachine):
@@ -21,10 +22,19 @@ class TocMachine(GraphMachine):
         scraper.asyncGetPages()
         titleList = scraper.getTitleLists()
         reply_msg = ""
-        for key in titleList:
-            reply_msg += key + "\n"
+        buttons_template = TemplateSendMessage(
+            alt_text='Buttons Template',
+            template=ButtonsTemplate(
+                title='choose console type',
+                text='console list',
+                # thumbnail_image_url='https://i.imgur.com/mjUakr3.jpg',
+                actions=[ MessageTemplateAction( label= key, text= key) for key in titleList ]
+            )
+        )
+        # for key in titleList:
+        #     reply_msg += key + "\n"
         reply_token = event.reply_token
-        send_text_message(reply_token, reply_msg)
+        send_text_message(reply_token, buttons_template)
         self.go_back()
 
     def on_exit_state1(self):
