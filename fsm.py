@@ -75,13 +75,10 @@ class TocMachine(GraphMachine):
         scraper = IgnScraper('ps4')
         scraper.asyncGetPages()
         titleList = scraper.getTitleLists()
-        msg = ''
         for index in range(len(titleList)):
-            msg += scraper.getBasicInfo(titleList[index]['url'])
-            if index != range(len(titleList)):
-                msg += '\n'
-        reply_token = event.reply_token
-        send_text_message(reply_token, msg)
+            msg = scraper.getBasicInfo(titleList[index]['url'])
+            reply_token = event.reply_token
+            send_text_message(reply_token, msg)
         self.go_back()
 
     def on_exit_ps4(self):

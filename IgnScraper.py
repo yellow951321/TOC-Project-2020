@@ -100,8 +100,7 @@ class IgnScraper:
             msg += "Score: " + str(score) + "-" + str(oneword) + '\n'
             msg += "Desc: " + str(description) + '\n'
             msg += "Url: " + str(url) + '\n'
-            msg += "Platforms: " + str(platforms) + '\n'
-            msg += "======================="
+            msg += "Platforms: " + str(platforms)
             return msg
         except:
             return "extract information failed.\nPlease chack this site\n" + url
