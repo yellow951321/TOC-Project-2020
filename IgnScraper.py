@@ -59,7 +59,7 @@ class IgnScraper:
         items = soup.findAll('div', {'class': 'item-details'})
         for child in items:
             if (child != None):
-                self.titleList[child.findChild('span', {'class': 'item-title-link'}).encode_contents()] = "https://www.ign.com/" + child.findChild('a').get('href')
+                self.titleList[child.findChild('span', {'class': 'item-title-link'}).encode_contents().decode("utf-8")] = "https://www.ign.com/" + child.findChild('a').get('href')
                 self.urlList.append("https://www.ign.com/" + child.findChild('a').get('href'))
     def getTitleLists(self):
         return self.titleList

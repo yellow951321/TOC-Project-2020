@@ -20,7 +20,7 @@ class TocMachine(GraphMachine):
         scraper = IgnScraper('ps4')
         scraper.asyncGetPages()
         titleList = scraper.getTitleLists()
-        reply_msg = "1"
+        reply_msg = ""
         for key in titleList:
             reply_msg += key + "\n"
         reply_token = event.reply_token
