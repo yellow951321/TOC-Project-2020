@@ -35,8 +35,7 @@ class TocMachine(GraphMachine):
 
     def on_enter_draw(self, event):
         reply_token = event.reply_token
-        self.machine.get_graph().draw("fsm.jpg", prog="dot", format="jpg")
-        send_image_url(reply_token, 'fsm.jpg')
+        send_image_url(reply_token, "https://portertoc.herokuapp.com/show-fsm")
         self.back()
 
     def on_exit_draw(self):
