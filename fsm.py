@@ -66,19 +66,14 @@ class TocMachine(GraphMachine):
         scraper = IgnScraper('ps4')
         scraper.asyncGetPages()
         titleList = scraper.getTitleLists()
-        buttons_template = TemplateSendMessage(
-            alt_text='Buttons Template',
-            template=ButtonsTemplate(
-                title='news',
-                text='choose one',
-                thumbnail_image_url='https://i.imgur.com/mjUakr3.jpg',
-                actions=[
-                    MessageTemplateAction(label=key, text=key) for key in titleList
-                ]
-            )
-        )
+        msg = ''
+        i = 0
+        for key in titleList:
+            i = i + 1
+            msg += i + '\n' + key + '\n'
+        msg += 'enter number to choose news'
         reply_token = event.reply_token
-        send_template(reply_token, buttons_template)
+        send_text_message(reply_token, msg)
         self.go_back()
 
     def on_exit_ps4(self):
