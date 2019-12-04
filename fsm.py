@@ -9,7 +9,7 @@ class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
 
-    def is_going_to_game_news(self, event):
+    def is_going_to_draw(self, event):
         text = event.message.text
         return text.lower() == "draw"
 
@@ -35,7 +35,8 @@ class TocMachine(GraphMachine):
 
     def on_enter_draw(self, event):
         reply_token = event.reply_token
-        send_image_url(reply_token, 'https://portertoc.herokuapp.com/show-fsm')
+        machine.get_graph().draw("fsm.jpg", prog="dot", format="jpg")
+        send_image_url(reply_token, 'fsm.jpg')
         self.back()
 
     def on_exit_draw(self):
