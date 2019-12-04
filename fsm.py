@@ -1,8 +1,9 @@
+import random
+
 from IgnScraper import IgnScraper
 from transitions.extensions import GraphMachine
 from utils import send_text_message, send_image_url, send_template, send_multiple_text_message
 from linebot.models import MessageEvent, PostbackEvent, TextSendMessage, TemplateSendMessage, ButtonsTemplate,PostbackTemplateAction, MessageTemplateAction, URITemplateAction,ImageSendMessage
-
 
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
@@ -79,6 +80,7 @@ class TocMachine(GraphMachine):
         for index in range(len(titleList)):
             msg.append(scraper.getBasicInfo(titleList[index]['url']))
 
+        random.shuffle(msg)
         reply_token = event.reply_token
         send_multiple_text_message(reply_token, msg)
         self.go_back()
