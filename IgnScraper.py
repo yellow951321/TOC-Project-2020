@@ -65,7 +65,8 @@ class IgnScraper:
         return self.titleList
 
     def asyncGetPages(self):
-        gevent.wait([gevent.spawn(self.getReviewUrls,i) for i in range(0, 1000, 25)])
+        # gevent.wait([gevent.spawn(self.getReviewUrls,i) for i in range(0, 1000, 25)])
+        gevent.wait([gevent.spawn(self.getReviewUrls, 0)])
         self.reviewList = list(set(self.urlList))
 
     def tryToGet(self, soup, nodeType, selectType, selectName, childType='None'):
