@@ -8,7 +8,7 @@ class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
 
-    def is_going_to_state1(self, event):
+    def is_going_to_game_news(self, event):
         text = event.message.text
         return text.lower() == "game news"
 
@@ -16,7 +16,11 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return text.lower() == "go to state2"
 
-    def on_enter_state1(self, event):
+    def is_going_to_ps4(self, event):
+        text = event.message.text
+        return text.lower() == "Ps4"
+
+    def on_enter_game_news(self, event):
         print("I'm entering state1")
         scraper = IgnScraper('ps4')
         scraper.asyncGetPages()
@@ -39,7 +43,7 @@ class TocMachine(GraphMachine):
                     ),
                     MessageTemplateAction(
                         label='pc',
-                        text='pc'   
+                        text='pc'
                     ),
                     MessageTemplateAction(
                         label='NS',
@@ -50,9 +54,9 @@ class TocMachine(GraphMachine):
         )
         reply_token = event.reply_token
         send_template(reply_token, buttons_template)
-        self.go_back()
+        # self.go_back()
 
-    def on_exit_state1(self):
+    def on_exit_game_news(self):
         print("Leaving state1")
 
     def on_enter_state2(self, event):
@@ -64,3 +68,10 @@ class TocMachine(GraphMachine):
 
     def on_exit_state2(self):
         print("Leaving state2")
+
+    def one_enter_ps4(self):
+        print('ps4')
+        self.go_back()
+
+    def one_exit_ps4(self):
+        print('ps4 leaving')
