@@ -21,14 +21,17 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return text.lower() == "ps4"
 
-    def is_going_to_get_info(self, event):
+    def is_going_to_xbox_one(self, event):
         text = event.message.text
-        try:
-            int(text)
-            return True
-        except:
-            return False
+        return text.lower() == "xbox_one"
 
+    def is_going_to_pc(self, event):
+        text = event.message.text
+        return text.lower() == "pc"
+
+    def is_going_to_nintendo_switch(self, event):
+        text = event.message.text
+        return text.lower() == "nintendo_switch"
 
     def on_enter_game_news(self, event):
         print("I'm entering state1")
@@ -44,16 +47,16 @@ class TocMachine(GraphMachine):
                         text='ps4'
                     ),
                     MessageTemplateAction(
-                        label='xbox-one',
-                        text='xbox-one'
+                        label='xbox_one',
+                        text='xbox_one'
                     ),
                     MessageTemplateAction(
                         label='pc',
                         text='pc'
                     ),
                     MessageTemplateAction(
-                        label='nintendo-switch',
-                        text='nintendo-switch'
+                        label='nintendo_switch',
+                        text='nintendo_switch'
                     ),
                 ]
             )
@@ -86,4 +89,49 @@ class TocMachine(GraphMachine):
 
     def on_exit_ps4(self):
         print('ps4 leaving')
+
+    def on_enter_xbox_one(self, event):
+        scraper = IgnScraper('xbox-one')
+        scraper.asyncGetPages()
+        titleList = scraper.getTitleLists()
+        msg = []
+        for index in range(len(titleList)):
+            msg.append(scraper.getBasicInfo(titleList[index]['url']))
+
+        reply_token = event.reply_token
+        send_text_message(reply_token, msg[random.randint(0, len(msg) - 1)])
+        self.go_back()
+
+    def on_exit_xbox_one(self):
+        print('xbox-one leaving')
+
+    def on_enter_pc(self, event):
+        scraper = IgnScraper('pc')
+        scraper.asyncGetPages()
+        titleList = scraper.getTitleLists()
+        msg = []
+        for index in range(len(titleList)):
+            msg.append(scraper.getBasicInfo(titleList[index]['url']))
+
+        reply_token = event.reply_token
+        send_text_message(reply_token, msg[random.randint(0, len(msg) - 1)])
+        self.go_back()
+
+    def on_exit_pc(self):
+        print('pc leaving')
+
+    def on_enter_nintendo_switch(self, event):
+        scraper = IgnScraper('nintendo-switch')
+        scraper.asyncGetPages()
+        titleList = scraper.getTitleLists()
+        msg = []
+        for index in range(len(titleList)):
+            msg.append(scraper.getBasicInfo(titleList[index]['url']))
+
+        reply_token = event.reply_token
+        send_text_message(reply_token, msg[random.randint(0, len(msg) - 1)])
+        self.go_back()
+
+    def on_exit_nintendo_switch(self):
+        print('nintendo-switch leaving')
 
