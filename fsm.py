@@ -20,6 +20,15 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return text.lower() == "ps4"
 
+    def is_going_to_get_info(self, event):
+        text = event.message.text
+        try:
+            int(text)
+            return True
+        except:
+            return False
+
+
     def on_enter_game_news(self, event):
         print("I'm entering state1")
         buttons_template = TemplateSendMessage(
@@ -67,14 +76,14 @@ class TocMachine(GraphMachine):
         scraper.asyncGetPages()
         titleList = scraper.getTitleLists()
         msg = ''
-        i = 0
-        for key in titleList:
-            i = i + 1
-            msg += str(i) + '\n' + key + '\n'
-        msg += 'enter number to choose news'
+        for index in range(len(titleList)):
+            msg += scraper.getBasicInfo(titleList[index]['url'])
+            if index != range(len(titleList)):
+                msg += '\n'
         reply_token = event.reply_token
         send_text_message(reply_token, msg)
         self.go_back()
 
     def on_exit_ps4(self):
         print('ps4 leaving')
+

@@ -29,7 +29,7 @@ class IgnScraper:
         self.reviewList = []
         self.http = urllib3.PoolManager()
         self.jsonData = []
-        self.titleList = {}
+        self.titleList = []
 
     def urlopen(self, url):
         return self.http.request(
@@ -59,7 +59,7 @@ class IgnScraper:
         items = soup.findAll('div', {'class': 'item-details'})
         for child in items:
             if (child != None):
-                self.titleList[child.findChild('span', {'class': 'item-title-link'}).encode_contents().decode("utf-8")] = "https://www.ign.com/" + child.findChild('a').get('href')
+                self.titleList.append({'title': child.findChild('span', {'class': 'item-title-link'}).encode_contents().decode("utf-8"), 'url': "https://www.ign.com/" + child.findChild('a').get('href')})
                 self.urlList.append("https://www.ign.com/" + child.findChild('a').get('href'))
     def getTitleLists(self):
         return self.titleList
@@ -95,14 +95,16 @@ class IgnScraper:
             platforms=self.tryToGetAllChildren(soup, 'div', 'class', 'objectcard-object-platforms-first', 'a')
             url=url.strip()
 
-            print("Name:", name)
-            print("Score:", score, "-", oneword)
-            print("Desc:", description)
-            print("Url:", url)
-            print("Platforms: ", platforms)
-            print("=================================================")
+            msg = ""
+            msg += "Name: " + str(name) + '\n'
+            msg += "Score: " + str(score) + "-" + str(oneword) + '\n'
+            msg += "Desc: " + str(description) + '\n'
+            msg += "Url: " + str(url) + '\n'
+            msg += "Platforms: " + str(platforms) + '\n'
+            msg += "======================="
+            return msg
         except:
-            print("Cant open url: ", url)
+            return "extract information failed.\nPlease chack this site\n" + url
 
     def run(self):
         self.asyncGetPages()

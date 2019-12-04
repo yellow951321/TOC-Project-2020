@@ -5,18 +5,13 @@ from linebot.models import MessageEvent, PostbackEvent, TextSendMessage, Templat
 
 
 
-print("I'm entering state1")
 scraper = IgnScraper('ps4')
 scraper.asyncGetPages()
 titleList = scraper.getTitleLists()
-reply_msg = ""
-buttons_template = TemplateSendMessage(
-    alt_text='Buttons Template',
-    template=ButtonsTemplate(
-        title='choose console type',
-        text='console list',
-        # thumbnail_image_url='https://i.imgur.com/mjUakr3.jpg',
-        actions=[ MessageTemplateAction( label= key, text= key) for key in titleList ]
-    )
-)
-print(buttons_template)
+msg = ''
+for index in range(len(titleList)):
+    msg += scraper.getBasicInfo(titleList[index]['url'])
+    if index != range(len(titleList)):
+        msg += '\n'
+
+print(msg)
