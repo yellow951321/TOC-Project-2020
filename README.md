@@ -11,6 +11,7 @@ A Line bot based on a finite state machine
 
 More details in the [Slides](https://hackmd.io/@TTW/ToC-2019-Project#) and [FAQ](https://hackmd.io/s/B1Xw7E8kN)
 
+recommand game news base on https://www.ign.com/
 ## Setup
 
 ### Prerequisite
@@ -71,7 +72,7 @@ Or You can use [servo](http://serveo.net/) to expose local servers to the intern
 
 
 ## Finite State Machine
-![fsm](./img/show-fsm.png)
+![fsm](./show-fsm.jpg)
 
 ## Usage
 The initial state is set to `user`.
