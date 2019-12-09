@@ -16,7 +16,7 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=['user', 'draw', 'game_news', 'ps4', "xbox_one", "pc", "nintendo_switch"],
+    states=['user', 'draw', 'game_news', 'ps4', "xbox_one", "pc", "nintendo_switch", "choose_platform", "recommend_ps4", "recommend_xbox_one", "recommend_pc", "recommend_nintendo_switch", "rdr2", "p5", "codmw", "mhw", "online_game", "hollow_knight"],
     transitions=[
         {
             "trigger": "advance",
@@ -54,7 +54,85 @@ machine = TocMachine(
             "dest": "nintendo_switch",
             "conditions": "is_going_to_nintendo_switch",
         },
-        {"trigger": "go_back", "source": ["draw", "game_news", "ps4", "xbox_one", "pc", "nintendo_switch"], "dest": "user"},
+        {
+            "trigger": "advance",
+            "source": "user",
+            "dest": "choose_platform",
+            "conditions": "is_going_to_choose_platform",
+        },
+        {
+            "trigger": "advance",
+            "source": "choose_platform",
+            "dest": "recommend_ps4",
+            "conditions": "is_going_to_recommend_ps4",
+        },
+        {
+            "trigger": "advance",
+            "source": "choose_platform",
+            "dest": "recommend_xbox_one",
+            "conditions": "is_going_to_recommend_xbox_one",
+        },
+        {
+            "trigger": "advance",
+            "source": "choose_platform",
+            "dest": "recommend_pc",
+            "conditions": "is_going_to_recommend_pc",
+        },
+        {
+            "trigger": "advance",
+            "source": "choose_platform",
+            "dest": "recommend_nintendo_switch",
+            "conditions": "is_going_to_recommend_nintendo_switch",
+        },
+        {
+            "trigger": "advance",
+            "source": "recommend_ps4",
+            "dest": "codmw",
+            "conditions": "is_going_to_codmw",
+        },
+        {
+            "trigger": "advance",
+            "source": "recommend_ps4",
+            "dest": "p5",
+            "conditions": "is_going_to_p5",
+        },
+        {
+            "trigger": "advance",
+            "source": "recommend_ps4",
+            "dest": "mhw",
+            "conditions": "is_going_to_mhw",
+        },
+        {
+            "trigger": "advance",
+            "source": "recommend_ps4",
+            "dest": "rdr2",
+            "conditions": "is_going_to_rdr2",
+        },
+        {
+            "trigger": "advance",
+            "source": "recommend_pc",
+            "dest": "online_game",
+            "conditions": "is_going_to_online_game",
+        },
+        {
+            "trigger": "advance",
+            "source": "recommend_pc",
+            "dest": "mhw",
+            "conditions": "is_going_to_mhw",
+        },
+        {
+            "trigger": "advance",
+            "source": "recommend_pc",
+            "dest": "hollow_knight",
+            "conditions": "is_going_to_hollow_knight",
+        },
+        {
+            "trigger": "advance",
+            "source": "recommend_pc",
+            "dest": "codmw",
+            "conditions": "is_going_to_codmw",
+        },
+        {"trigger": "go_back", "source": ["draw", "game_news", "ps4", "xbox_one", "pc", "nintendo_switch", "recommend_xbox_one", "recommend_nintendo_switch", "the_outer_world", "rdr2", "p5", "codmw", "mhw", "hollow_knight", "online_game"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,
