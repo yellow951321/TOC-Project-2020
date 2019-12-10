@@ -66,6 +66,15 @@ python3 app.py
 1. 輸入recommend後會有選項讓使用者選擇希望推薦的遊戲的平台
 ![presentation3](./img/presentation3.jpg)
 2. 選擇平台後會有選項讓使用者選擇希望推薦的遊戲類型
+![presentation4](./img/presentation4.jpg)
+3. 選完後，我會推薦一款我認為在這個平台跟遊戲類型下值得玩的一款遊戲。
+![presentation5](./img/presentation5.jpg)
+### show-fsm
+1. 輸入draw則會顯示當前的FSM的狀態圖
+![presentation6](./img/presentation6.jpg)
 
-
-
+## Scraping mechanism
+- 遊戲新聞的資料（評分跟評語）是擷取自IGN的遊戲新聞
+- https://www.ign.com/{遊戲平台} 會顯示此遊戲平台的遊戲新聞
+- 隨機選取一則新聞之後進到新聞頁面中，並拿出需要的資訊。
+![presentation7](./img/presentation7.png)
