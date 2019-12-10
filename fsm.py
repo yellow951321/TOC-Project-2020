@@ -284,25 +284,25 @@ class TocMachine(GraphMachine):
     def on_enter_codmw(self, event):
         print("I'm entering codmw")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Call of Duty Morden warfare")
+        send_text_message(reply_token, "Call of Duty Morden warfare\n 年貨遊戲，喜歡fps的玩家都可以試試看，破千萬銷售的遊戲肯定不會差。")
         self.go_back()
 
     def on_enter_p5(self, event):
         print("I'm entering p5")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Persona 5")
+        send_text_message(reply_token, "Persona 5\n 傳統的日式角色扮演遊戲，傳統的回合制戰鬥，傳統的熱血劇情。可是有很炫泡的UI跟美術，如果可以接受jrpg的話這款肯定不會後悔。")
         self.go_back()
 
     def on_enter_mhw(self, event):
         print("I'm entering mhw")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Monster Hunter World")
+        send_text_message(reply_token, "Monster Hunter World\n 嚴格上來說算是共鬥遊戲，不過如果是對自己的技術有信心的動作遊戲玩家也可以試試，我這邊推薦一個影片 https://www.youtube.com/watch?v=7cOGUvU_3tM&t=1130s 如果還在猶豫的人可以看看。")
         self.go_back()
 
     def on_enter_rdr2(self, event):
         print("I'm entering rdr2")
         reply_token = event.reply_token
-        send_text_message(reply_token, "red dead redemption 2")
+        send_text_message(reply_token, "red dead redemption 2\n 牛仔模擬器，現實又煩人的遊戲機制，槍髒了要清，馬髒了要清，鞋髒了要清。但是如果你願意花一百的小時去品味亞瑟令人動容的一生，那碧血狂殺2的主線和支線劇情絕對不會讓你失望。")
         self.go_back()
 
     def on_enter_online_game(self, event):
@@ -314,6 +314,6 @@ class TocMachine(GraphMachine):
     def on_enter_hollow_knight(self, event):
         print("I'm entering online_game")
         reply_token = event.reply_token
-        send_text_message(reply_token, "hollow knight")
+        send_text_message(reply_token, "hollow knight\n 窟窿騎士給了玩家一個衰弱的地底世界，一步步的突破難關來得知真相。雖然外表是可愛Q版的，但難度絕對不亞於魂系列，對於擁有探索和對自己技術有自信的玩家我很推薦。類銀河戰士惡魔城是一個特殊的遊戲類型，如果窟窿騎士和你胃口的話最近發售的血咒之城也可以試試。")
         self.go_back()
 
